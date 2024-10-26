@@ -380,97 +380,97 @@ bool parse_str_to_bool(const std::string & s) {
 
 void get_req_parameters(const Request & req, whisper_params & params)
 {
-    if (req.has_file("offset_t"))
+    if (req.has_param("offset_t"))
     {
-        params.offset_t_ms = std::stoi(req.get_file_value("offset_t").content);
+        params.offset_t_ms = std::stoi(req.get_param_value("offset_t"));
     }
-    if (req.has_file("offset_n"))
+    if (req.has_param("offset_n"))
     {
-        params.offset_n = std::stoi(req.get_file_value("offset_n").content);
+        params.offset_n = std::stoi(req.get_param_value("offset_n"));
     }
-    if (req.has_file("duration"))
+    if (req.has_param("duration"))
     {
-        params.duration_ms = std::stoi(req.get_file_value("duration").content);
+        params.duration_ms = std::stoi(req.get_param_value("duration"));
     }
-    if (req.has_file("max_context"))
+    if (req.has_param("max_context"))
     {
-        params.max_context = std::stoi(req.get_file_value("max_context").content);
+        params.max_context = std::stoi(req.get_param_value("max_context"));
     }
-    if (req.has_file("max_len"))
+    if (req.has_param("max_len"))
     {
-        params.max_len = std::stoi(req.get_file_value("max_len").content);
+        params.max_len = std::stoi(req.get_param_value("max_len"));
     }
-    if (req.has_file("best_of"))
+    if (req.has_param("best_of"))
     {
-        params.best_of = std::stoi(req.get_file_value("best_of").content);
+        params.best_of = std::stoi(req.get_param_value("best_of"));
     }
-    if (req.has_file("beam_size"))
+    if (req.has_param("beam_size"))
     {
-        params.beam_size = std::stoi(req.get_file_value("beam_size").content);
+        params.beam_size = std::stoi(req.get_param_value("beam_size"));
     }
-    if (req.has_file("audio_ctx"))
+    if (req.has_param("audio_ctx"))
     {
-        params.audio_ctx = std::stof(req.get_file_value("audio_ctx").content);
+        params.audio_ctx = std::stof(req.get_param_value("audio_ctx"));
     }
-    if (req.has_file("word_thold"))
+    if (req.has_param("word_thold"))
     {
-        params.word_thold = std::stof(req.get_file_value("word_thold").content);
+        params.word_thold = std::stof(req.get_param_value("word_thold"));
     }
-    if (req.has_file("entropy_thold"))
+    if (req.has_param("entropy_thold"))
     {
-        params.entropy_thold = std::stof(req.get_file_value("entropy_thold").content);
+        params.entropy_thold = std::stof(req.get_param_value("entropy_thold"));
     }
-    if (req.has_file("logprob_thold"))
+    if (req.has_param("logprob_thold"))
     {
-        params.logprob_thold = std::stof(req.get_file_value("logprob_thold").content);
+        params.logprob_thold = std::stof(req.get_param_value("logprob_thold"));
     }
-    if (req.has_file("debug_mode"))
+    if (req.has_param("debug_mode"))
     {
-        params.debug_mode = parse_str_to_bool(req.get_file_value("debug_mode").content);
+        params.debug_mode = parse_str_to_bool(req.get_param_value("debug_mode"));
     }
-    if (req.has_file("translate"))
+    if (req.has_param("translate"))
     {
-        params.translate = parse_str_to_bool(req.get_file_value("translate").content);
+        params.translate = parse_str_to_bool(req.get_param_value("translate"));
     }
-    if (req.has_file("diarize"))
+    if (req.has_param("diarize"))
     {
-        params.diarize = parse_str_to_bool(req.get_file_value("diarize").content);
+        params.diarize = parse_str_to_bool(req.get_param_value("diarize"));
     }
-    if (req.has_file("tinydiarize"))
+    if (req.has_param("tinydiarize"))
     {
-        params.tinydiarize = parse_str_to_bool(req.get_file_value("tinydiarize").content);
+        params.tinydiarize = parse_str_to_bool(req.get_param_value("tinydiarize"));
     }
-    if (req.has_file("split_on_word"))
+    if (req.has_param("split_on_word"))
     {
-        params.split_on_word = parse_str_to_bool(req.get_file_value("split_on_word").content);
+        params.split_on_word = parse_str_to_bool(req.get_param_value("split_on_word"));
     }
-    if (req.has_file("no_timestamps"))
+    if (req.has_param("no_timestamps"))
     {
-        params.no_timestamps = parse_str_to_bool(req.get_file_value("no_timestamps").content);
+        params.no_timestamps = parse_str_to_bool(req.get_param_value("no_timestamps"));
     }
-    if (req.has_file("language"))
+    if (req.has_param("language"))
     {
-        params.language = req.get_file_value("language").content;
+        params.language = req.get_param_value("language");
     }
-    if (req.has_file("detect_language"))
+    if (req.has_param("detect_language"))
     {
-        params.detect_language = parse_str_to_bool(req.get_file_value("detect_language").content);
+        params.detect_language = parse_str_to_bool(req.get_param_value("detect_language"));
     }
-    if (req.has_file("prompt"))
+    if (req.has_param("prompt"))
     {
-        params.prompt = req.get_file_value("prompt").content;
+        params.prompt = req.get_param_value("prompt");
     }
-    if (req.has_file("response_format"))
+    if (req.has_param("response_format"))
     {
-        params.response_format = req.get_file_value("response_format").content;
+        params.response_format = req.get_param_value("response_format");
     }
-    if (req.has_file("temperature"))
+    if (req.has_param("temperature"))
     {
-        params.temperature = std::stof(req.get_file_value("temperature").content);
+        params.temperature = std::stof(req.get_param_value("temperature"));
     }
-    if (req.has_file("temperature_inc"))
+    if (req.has_param("temperature_inc"))
     {
-        params.temperature_inc = std::stof(req.get_file_value("temperature_inc").content);
+        params.temperature_inc = std::stof(req.get_param_value("temperature_inc"));
     }
 }
 
@@ -598,12 +598,7 @@ int main(int argc, char ** argv) {
 
         <h2>/inference</h2>
         <pre>
-    curl 127.0.0.1:)" + std::to_string(sparams.port) + R"(/inference \
-    -H "Content-Type: multipart/form-data" \
-    -F file="@&lt;file-path&gt;" \
-    -F temperature="0.0" \
-    -F temperature_inc="0.2" \
-    -F response_format="json"
+    curl 127.0.0.1:)" + std::to_string(sparams.port) + R"(/inference?file=file-path&temperature=0.0&temperature_inc=0.2&response_format=json
         </pre>
 
         <h2>/load</h2>
@@ -615,9 +610,9 @@ int main(int argc, char ** argv) {
 
         <div>
             <h2>Try it out</h2>
-            <form action="/inference" method="POST" enctype="multipart/form-data">
+            <form action="/inference" method="GET">
                 <label for="file">Choose an audio file:</label>
-                <input type="file" id="file" name="file" accept="audio/*" required><br>
+                <input type="text" id="file" name="file" required><br>
 
                 <label for="temperature">Temperature:</label>
                 <input type="number" id="temperature" name="temperature" value="0.0" step="0.01" placeholder="e.g., 0.0"><br>
@@ -650,25 +645,41 @@ int main(int argc, char ** argv) {
     svr.Options(sparams.request_path + sparams.inference_path, [&](const Request &, Response &){
     });
 
-    svr.Post(sparams.request_path + sparams.inference_path, [&](const Request &req, Response &res){
+    svr.Get(sparams.request_path + sparams.inference_path, [&](const Request &req, Response &res){
         // acquire whisper model mutex lock
         std::lock_guard<std::mutex> lock(whisper_mutex);
 
         // first check user requested fields of the request
-        if (!req.has_file("file"))
+        if (!req.has_param("file"))
         {
             fprintf(stderr, "error: no 'file' field in the request\n");
             const std::string error_resp = "{\"error\":\"no 'file' field in the request\"}";
             res.set_content(error_resp, "application/json");
             return;
         }
-        auto audio_file = req.get_file_value("file");
+        std::string audio_file_path = req.get_param_value("file");
+        // Read the file into a string
+        std::ifstream file(audio_file_path.c_str(), std::ios::binary);
+
+        if (!file) {
+            fprintf(stderr, "error: Unable to open the file '%s'\n", audio_file_path.c_str());
+            const std::string error_resp = "{\"error\":\"Unable to open the file : " + audio_file_path + "\"}";
+            res.set_content(error_resp, "application/json");
+            return;
+        }
+
+        // Read file content into a string
+        std::string file_content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+        file.close();
+
+        // Prepare the multipart form data
+        httplib::MultipartFormDataItems items = {
+          {"file", file_content, "file.wav", "audio/wav"}
+        };
+        auto audio_file = items[0];
 
         // check non-required fields
         get_req_parameters(req, params);
-
-        std::string filename{audio_file.filename};
-        printf("Received request: %s\n", filename.c_str());
 
         // audio arrays
         std::vector<float> pcmf32;               // mono-channel F32 PCM
@@ -677,8 +688,7 @@ int main(int argc, char ** argv) {
         if (sparams.ffmpeg_converter) {
             // if file is not wav, convert to wav
             // write to temporary file
-            const std::string temp_filename_base = std::tmpnam(nullptr);
-            const std::string temp_filename = temp_filename_base + ".wav";
+            const std::string temp_filename = "whisper_server_temp_file.wav";
             std::ofstream temp_file{temp_filename, std::ios::binary};
             temp_file << audio_file.content;
             temp_file.close();
@@ -711,9 +721,6 @@ int main(int argc, char ** argv) {
             }
         }
 
-
-        printf("Successfully loaded %s\n", filename.c_str());
-
         // print system information
         {
             fprintf(stderr, "\n");
@@ -734,8 +741,8 @@ int main(int argc, char ** argv) {
             if (params.detect_language) {
                 params.language = "auto";
             }
-            fprintf(stderr, "%s: processing '%s' (%d samples, %.1f sec), %d threads, %d processors, lang = %s, task = %s, %stimestamps = %d ...\n",
-                    __func__, filename.c_str(), int(pcmf32.size()), float(pcmf32.size())/WHISPER_SAMPLE_RATE,
+            fprintf(stderr, "%s: processing file (%d samples, %.1f sec), %d threads, %d processors, lang = %s, task = %s, %stimestamps = %d ...\n",
+                    __func__, int(pcmf32.size()), float(pcmf32.size())/WHISPER_SAMPLE_RATE,
                     params.n_threads, params.n_processors,
                     params.language.c_str(),
                     params.translate ? "translate" : "transcribe",
@@ -747,7 +754,6 @@ int main(int argc, char ** argv) {
 
         // run the inference
         {
-            printf("Running whisper.cpp inference on %s\n", filename.c_str());
             whisper_full_params wparams = whisper_full_default_params(WHISPER_SAMPLING_GREEDY);
 
             wparams.strategy = params.beam_size > 1 ? WHISPER_SAMPLING_BEAM_SEARCH : WHISPER_SAMPLING_GREEDY;

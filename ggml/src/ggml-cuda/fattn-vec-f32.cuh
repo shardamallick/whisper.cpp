@@ -2,9 +2,9 @@
 #include "fattn-common.cuh"
 
 template<int D, int ncols, int parallel_blocks, ggml_type type_K, ggml_type type_V, bool use_logit_softcap> // D == head size
-#if !(defined(GGML_USE_HIPBLAS) && defined(__HIP_PLATFORM_AMD__))
+#if !(defined(GGML_USE_HIP) && defined(__HIP_PLATFORM_AMD__))
 __launch_bounds__(D, 1)
-#endif // !(defined(GGML_USE_HIPBLAS) && defined(__HIP_PLATFORM_AMD__))
+#endif // !(defined(GGML_USE_HIP) && defined(__HIP_PLATFORM_AMD__))
 static __global__ void flash_attn_vec_ext_f32(
         const char * __restrict__ Q,
         const char * __restrict__ K,
@@ -41,6 +41,11 @@ static __global__ void flash_attn_vec_ext_f32(
         const int ne1,
         const int ne2,
         const int ne3) {
+#ifndef FLASH_ATTN_AVAILABLE
+    NO_DEVICE_CODE;
+    return;
+#endif // FLASH_ATTN_AVAILABLE
+
     // Skip unused kernel variants for faster compilation:
     if (use_logit_softcap && !(D == 128 || D == 256)) {
         NO_DEVICE_CODE;
@@ -206,7 +211,6 @@ static __global__ void flash_attn_vec_ext_f32(
         for (int j = 0; j < ncols; ++j) {
             float kqmax_new_j = kqmax_new_arr[j];
 
-            kqmax_new_j = warp_reduce_max(kqmax_new_j);
             if (threadIdx.x == 0) {
                 kqmax_shared[j][threadIdx.y] = kqmax_new_j;
             }
@@ -285,7 +289,8 @@ void ggml_cuda_flash_attn_ext_vec_f32_case_impl(ggml_backend_cuda_context & ctx,
     fattn_kernel_t fattn_kernel = flash_attn_vec_ext_f32<D, cols_per_block, parallel_blocks, type_K, type_V, use_logit_softcap>;
     constexpr bool need_f16_K = D != 128;
     constexpr bool need_f16_V = D != 128 && D != 64;
-    launch_fattn<D, parallel_blocks>(ctx, dst, fattn_kernel, nwarps, cols_per_block, need_f16_K, need_f16_V);
+    constexpr size_t nbytes_shared = 0;
+    launch_fattn<D, cols_per_block, parallel_blocks, -1>(ctx, dst, fattn_kernel, nwarps, nbytes_shared, need_f16_K, need_f16_V);
 }
 
 template <int D, ggml_type type_K, ggml_type type_V>

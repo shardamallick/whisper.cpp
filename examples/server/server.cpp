@@ -754,7 +754,6 @@ int main(int argc, char ** argv) {
             }
         }
 
-        printf("Successfully loaded %s\n", filename.c_str());
         // print system information
         {
             fprintf(stderr, "\n");
